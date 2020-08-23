@@ -1,2 +1,2 @@
-MyFirstProgram.java
- MyFirstProgram
+qa/java_cource/sandbox/MyFirstProgram.java
+ qa.java_cource.sandbox.MyFirstProgram
