@@ -1,6 +1,8 @@
-qa/java_cource/sandbox/MyFirstProgram.java
- qa.java_cource.sandbox.MyFirstProgram
-qa/java_cource/sandbox/Square.java
- qa.java_cource.sandbox.Square
 qa/java_cource/sandbox/Rectangle.java
  qa.java_cource.sandbox.Rectangle
+qa/java_cource/sandbox/Square.java
+ qa.java_cource.sandbox.Square
+qa/java_cource/sandbox/Point.java
+ qa.java_cource.sandbox.Point
+qa/java_cource/sandbox/MyFirstProgram.java
+ qa.java_cource.sandbox.MyFirstProgram
