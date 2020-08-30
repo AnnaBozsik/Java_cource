@@ -1,9 +1,10 @@
-package qa.java_cource.addressbook;
+package qa.java_cource.addressbook.tests;
 
 import java.util.concurrent.TimeUnit;
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import qa.java_cource.addressbook.model.ContactData;
 
 public class NewContactCreationTests {
   private WebDriver wd;

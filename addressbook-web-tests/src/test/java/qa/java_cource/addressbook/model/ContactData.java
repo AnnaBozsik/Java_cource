@@ -1,4 +1,4 @@
-package qa.java_cource.addressbook;
+package qa.java_cource.addressbook.model;
 
 public class ContactData {
   private final String firstName;
