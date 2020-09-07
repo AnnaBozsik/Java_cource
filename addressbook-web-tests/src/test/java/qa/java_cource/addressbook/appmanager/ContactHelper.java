@@ -15,24 +15,24 @@ public class ContactHelper extends HelperBase {
   }
 
   public void returnToHomePage() {
-    click(By.linkText("home"));
+    click(By.linkText("home page"));
   }
 
   public void submitNewContactForm() {
     click(By.xpath("(//input[@name='submit'])[2]"));
   }
 
-  public void fillContactForm(ContactData contactData, boolean creation) {
+  public void fillContactForm(ContactData contactData/*, boolean creation*/) {
     type(By.name("firstname"), contactData.getFirstName());
     type(By.name("lastname"), contactData.getLastName());
     type(By.name("mobile"), contactData.getMobile());
     type(By.name("email"), contactData.getEmail());
 
-    if (creation) {
+    /*if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
-    }
+    }*/
   }
 
   public void gotoEditPage() {
@@ -57,6 +57,17 @@ public class ContactHelper extends HelperBase {
 
   public void initContactUpdate() {
     click(By.xpath("(//input[@name='update'])[2]"));
+  }
+
+  public void createContact(ContactData contact) {
+    gotoEditPage();
+    fillContactForm(contact);
+    submitNewContactForm();
+    returnToHomePage();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
 
