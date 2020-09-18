@@ -49,6 +49,7 @@ public class ContactHelper extends HelperBase {
 
   public void closeConfirmationWindow() {
     wd.switchTo().alert().accept();
+    wd.findElement(By.cssSelector("div.msgbox"));
   }
 
   public void initContactEditing() {
