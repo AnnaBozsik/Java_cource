@@ -1,12 +1,8 @@
 package qa.java_cource.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import qa.java_cource.addressbook.model.ContactData;
 
 import java.util.ArrayList;
@@ -85,7 +81,8 @@ public class ContactHelper extends HelperBase {
     for (WebElement row : rows) {
         String lastName = row.findElement(By.cssSelector("td:nth-child(2)")).getText();
         String firstName = row.findElement(By.cssSelector("td:nth-child(3)")).getText();
-        ContactData contact = new ContactData(firstName, lastName, null, null, null);
+        int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
+        ContactData contact = new ContactData(id, firstName, lastName, null, null, null);
         contacts.add(contact);
       }
     return contacts;
