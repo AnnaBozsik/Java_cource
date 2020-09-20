@@ -15,7 +15,7 @@ public class ContactCreationTests extends TestBase{
     app.getContactHelper().gotoEditPage();
     ContactData contact = new ContactData("Anna", "Bozsik", "925-961-6101", "ann.bozsik@gmail.com", "test_1");
     app.getContactHelper().createContact(contact);
-    app.getNavigationHelper().gotoHome();
+    app.goTo().gotoHome();
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size() + 1);
 
