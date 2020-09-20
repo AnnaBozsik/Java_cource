@@ -3,7 +3,6 @@ package qa.java_cource.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import qa.java_cource.addressbook.model.GroupData;
 
 import java.util.ArrayList;
@@ -53,7 +52,7 @@ public class GroupHelper extends HelperBase{
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
-    //returnToGroupPage();
+    returnToGroupPage();
   }
 
   public boolean isThereAGroup() {
@@ -74,5 +73,13 @@ public class GroupHelper extends HelperBase{
       groups.add(group);
     }
     return groups;
+  }
+
+  public void modifyGroup(int index, GroupData group) {
+    selectGroup(index);
+    initGroupModification();
+    fillGroupForm(group);
+    submitGroupModification();
+    returnToGroupPage();
   }
 }
