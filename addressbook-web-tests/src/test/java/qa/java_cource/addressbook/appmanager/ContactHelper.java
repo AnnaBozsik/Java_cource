@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import qa.java_cource.addressbook.model.ContactData;
+import qa.java_cource.addressbook.model.Contacts;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -90,8 +91,8 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.xpath("//img[@alt='Edit']")).size();
   }
 
-  public Set<ContactData> all() {
-    Set<ContactData> contacts = new HashSet<ContactData>();
+  public Contacts all() {
+    Contacts contacts = new Contacts();
     List<WebElement> rows = wd.findElements(By.name("entry"));
     for (WebElement row : rows) {
       String lastName = row.findElement(By.cssSelector("td:nth-child(2)")).getText();
