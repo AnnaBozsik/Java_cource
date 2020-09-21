@@ -6,7 +6,9 @@ import org.openqa.selenium.WebElement;
 import qa.java_cource.addressbook.model.ContactData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -39,8 +41,8 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
   public void initContactDeletion() {
@@ -67,15 +69,15 @@ public class ContactHelper extends HelperBase {
     returnToHomePage();
   }
 
-  public void modify(int index, ContactData contact) {
-    selectContact(index);
+  public void modify(ContactData contact) {
+    selectContactById(contact.getId());
     initContactEditing();
     fillContactForm(contact);
     initContactUpdate();
   }
 
-  public void delete(int index) {
-    selectContact(index);
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
     initContactDeletion();
     closeConfirmationWindow();
   }
@@ -88,15 +90,15 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.xpath("//img[@alt='Edit']")).size();
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
     List<WebElement> rows = wd.findElements(By.name("entry"));
     for (WebElement row : rows) {
-        String lastName = row.findElement(By.cssSelector("td:nth-child(2)")).getText();
-        String firstName = row.findElement(By.cssSelector("td:nth-child(3)")).getText();
-        int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
-        contacts.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
-      }
+      String lastName = row.findElement(By.cssSelector("td:nth-child(2)")).getText();
+      String firstName = row.findElement(By.cssSelector("td:nth-child(3)")).getText();
+      int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("value"));
+      contacts.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
+    }
     return contacts;
   }
 }
