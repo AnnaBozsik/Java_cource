@@ -6,10 +6,7 @@ import org.openqa.selenium.WebElement;
 import qa.java_cource.addressbook.model.ContactData;
 import qa.java_cource.addressbook.model.Contacts;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -55,8 +52,8 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.cssSelector("div.msgbox"));
   }
 
-  public void initContactEditing() {
-    click(By.xpath("//img[@alt='Edit']"));
+  public void initContactEditing(int id) {
+    wd.findElement(By.xpath("//a[contains(@href,'edit.php?id=" + id + "')]")).click();
   }
 
   public void initContactUpdate() {
@@ -71,8 +68,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void modify(ContactData contact) {
-    selectContactById(contact.getId());
-    initContactEditing();
+    initContactEditing(contact.getId());
     fillContactForm(contact);
     initContactUpdate();
   }
