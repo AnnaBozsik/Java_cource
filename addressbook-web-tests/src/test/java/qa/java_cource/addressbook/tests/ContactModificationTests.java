@@ -14,7 +14,9 @@ public class ContactModificationTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
     if (app.contact().all().size() == 0) {
-      app.contact().create(new ContactData().withFirstName("Anna").withLastName("Bozsik").withMobile("925-961-6101").withEmail("ann.bozsik@gmail.com").withGroup("test_1"));
+      app.contact().create(new ContactData().withFirstName("Anna").withLastName("Bozsik")
+              .withHomePhone("111").withMobilePhone("222").withWorkPhone("333")
+              .withEmail("ann.bozsik@gmail.com").withGroup("test_1"));
       app.goTo().gotoHome();
     }
   }
@@ -24,7 +26,9 @@ public class ContactModificationTests extends TestBase {
     Contacts before = app.contact().all();
     ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData()
-            .withId(modifiedContact.getId()).withFirstName("Anna").withLastName("Bozsik").withMobile("925-961-6101").withEmail("ann.bozsik@gmail.com");
+            .withId(modifiedContact.getId()).withFirstName("Anna").withLastName("Bozsik")
+            .withHomePhone("111").withMobilePhone("222").withWorkPhone("333")
+            .withEmail("ann.bozsik@gmail.com");
     app.contact().modify(contact);
     app.goTo().gotoHome();
     Contacts after = app.contact().all();
