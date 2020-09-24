@@ -7,7 +7,6 @@ import qa.java_cource.addressbook.model.Contacts;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
 
 public class ContactModificationTests extends TestBase {
 
@@ -15,7 +14,7 @@ public class ContactModificationTests extends TestBase {
   public void ensurePreconditions() {
     if (app.contact().all().size() == 0) {
       app.contact().create(new ContactData().withFirstName("Anna").withLastName("Bozsik")
-              .withMobilePhone("222").withEmail("ann.bozsik@gmail.com").withGroup("test_1"));
+              .withMobilePhone("222").withEmail("ab@gmail.com").withGroup("test_1"));
       app.goTo().gotoHome();
     }
   }
@@ -29,8 +28,8 @@ public class ContactModificationTests extends TestBase {
             .withMobilePhone("222").withEmail("ann.bozsik@gmail.com");
     app.contact().modify(contact);
     app.goTo().gotoHome();
+    assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.contact().all();
-    assertEquals(after.size(), before.size());
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
   }
 }
