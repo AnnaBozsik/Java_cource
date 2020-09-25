@@ -1,7 +1,6 @@
 package qa.java_cource.addressbook.tests;
 
 import org.testng.annotations.Test;
-import org.testng.annotations.*;
 import qa.java_cource.addressbook.model.ContactData;
 
 import static org.hamcrest.CoreMatchers.equalTo;

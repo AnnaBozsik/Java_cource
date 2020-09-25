@@ -25,11 +25,12 @@ public class ContactHelper extends HelperBase {
   public void fillContactForm(ContactData contactData) {
     type(By.name("firstname"), contactData.getFirstName());
     type(By.name("lastname"), contactData.getLastName());
+    type(By.name("address"), contactData.getAddress());
     type(By.name("home"), contactData.getHomePhone());
     type(By.name("mobile"), contactData.getMobilePhone());
     type(By.name("work"), contactData.getWorkPhone());
-    type(By.name("address"), contactData.getAddress());
     type(By.name("email"), contactData.getEmail());
+    type(By.name("address2"), contactData.getAddress2());
   }
 
   public void gotoEditPage() {
@@ -100,7 +101,7 @@ public class ContactHelper extends HelperBase {
     String address2 = wd.findElement(By.name("address2")).getAttribute("value");
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withFirstName(firstName).withLastName(lastName)
-            .withAllAddresses(address).withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
+            .withAddress(address).withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work)
             .withEmail(email).withEmail2(email2).withAddress2(address2);
   }
 
