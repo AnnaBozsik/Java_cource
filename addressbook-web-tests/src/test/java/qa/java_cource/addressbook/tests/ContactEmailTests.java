@@ -11,29 +11,29 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 
-public class ContactAddressTests extends TestBase {
+public class ContactEmailTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
     if (app.contact().all().size() == 0) {
       app.contact().create(new ContactData().withFirstName("Anna").withLastName("Bozsik")
               .withAddress("11 Test street, ABC").withMobilePhone("22-22").withEmail("ab@gmail.com")
-              .withAddress2("22/a Test street, XYZ").withGroup("test_1"));
+              .withEmail2("yy_uu@gmail.com").withGroup("test_1"));
       app.goTo().gotoHome();
     }
   }
 
   @Test
-  public void testContactAddresses () {
+  public void testContactEmails () {
     app.goTo().gotoHome();
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
-    assertThat(contact.getAllAddresses(), equalTo(mergeAddresses(contactInfoFromEditForm)));
+    assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
   }
 
-  private String mergeAddresses (ContactData contact) {
-    return Arrays.asList(contact.getAddress(), contact.getAddress2())
+  private String mergeEmails (ContactData contact) {
+    return Arrays.asList(contact.getEmail(), contact.getEmail2())
             .stream().filter((s) -> ! s.equals("")).collect(Collectors.joining("\n"));
   }
 }
