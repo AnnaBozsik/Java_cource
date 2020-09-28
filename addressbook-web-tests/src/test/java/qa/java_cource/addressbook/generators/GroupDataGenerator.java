@@ -46,7 +46,6 @@ public class GroupDataGenerator {
       saveAsXml(groups, new File(file));
     } else if (format.equals("json")) {
       saveAsJson(groups, new File(file));
-
     } else {
       System.out.println("Unrecognized format " + format);
     }

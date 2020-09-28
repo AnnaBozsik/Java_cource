@@ -1,24 +1,37 @@
 package qa.java_cource.addressbook.model;
 
+import com.google.gson.annotations.Expose;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import java.io.File;
 import java.util.Objects;
 
+@XStreamAlias("contact")
+
 public class ContactData {
+  @XStreamOmitField
   private int id = Integer.MAX_VALUE;
+  @Expose
   private String firstName;
+  @Expose
   private String lastName;
+  @Expose
   private String address;
   private String address2;
   private String allAddresses;
   private String homePhone;
+  @Expose
   private String mobilePhone;
   private String workPhone;
   private String allPhones;
+  @Expose
   private String email;
   private String email2;
   private String allEmails;
   private String group;
   private File photo;
+
 
   public File getPhoto() {
     return photo;
@@ -64,6 +77,7 @@ public class ContactData {
   public String getGroup() {
     return group;
   }
+
 
   public ContactData withId(int id) {
     this.id = id;
@@ -153,15 +167,11 @@ public class ContactData {
   @Override
   public String toString() {
     return "ContactData{" +
-            "id=" + id +
-            ", firstName='" + firstName + '\'' +
+            "firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
             ", address='" + address + '\'' +
-            ", homePhone='" + homePhone + '\'' +
             ", mobilePhone='" + mobilePhone + '\'' +
-            ", workPhone='" + workPhone + '\'' +
             ", email='" + email + '\'' +
             '}';
   }
-
 }
