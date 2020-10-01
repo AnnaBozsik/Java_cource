@@ -8,10 +8,4 @@
             <class name="qa.java_cource.addressbook.tests.GroupDeletionTests" />
         </classes>
     </test>
-
-    <test name="Contacts">
-        <classes>
-            <class name="qa.java_cource.addressbook.tests.ContactCreationTests" />
-        </classes>
-    </test>
 </suite>
