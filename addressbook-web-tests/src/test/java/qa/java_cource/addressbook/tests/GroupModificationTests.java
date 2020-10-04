@@ -6,7 +6,6 @@ import qa.java_cource.addressbook.model.GroupData;
 import qa.java_cource.addressbook.model.Groups;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
 
 public class GroupModificationTests extends TestBase{
 

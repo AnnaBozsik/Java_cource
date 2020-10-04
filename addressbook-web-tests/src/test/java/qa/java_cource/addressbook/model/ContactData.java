@@ -75,15 +75,6 @@ public class ContactData {
   @Transient
   private String group;
 
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id=" + id +
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            '}';
-  }
-
   @Column(name = "photo")
   @Type(type = "text")
   private String photo;
@@ -225,6 +216,15 @@ public class ContactData {
   @Override
   public int hashCode() {
     return Objects.hash(id, firstName, lastName);
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            '}';
   }
 
 }

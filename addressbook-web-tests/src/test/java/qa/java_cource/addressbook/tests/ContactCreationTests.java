@@ -49,11 +49,11 @@ public class ContactCreationTests extends TestBase{
 
   @Test(dataProvider = "validContactsFromJson")
   public void testNewContactCreation(ContactData contact) throws Exception {
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     app.contact().create(contact);
     app.goTo().gotoHome();
     assertThat(app.contact().count(), equalTo(before.size() + 1));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
   }
@@ -75,12 +75,12 @@ public class ContactCreationTests extends TestBase{
 
   @Test(enabled = false)
   public void testBadNewContactCreation() throws Exception {
-    Contacts before = app.contact().all();
+    Contacts before = app.db().contacts();
     ContactData contact = new ContactData().withFirstName("A'").withLastName("Bozsik").withMobilePhone("222").withEmail("ann.bozsik@gmail.com").withGroup("test_1");
     app.contact().create(contact);
     app.goTo().gotoHome();
     assertThat(app.contact().count(), equalTo(before.size()));
-    Contacts after = app.contact().all();
+    Contacts after = app.db().contacts();
     assertThat(after, equalTo(before));
   }
 }
