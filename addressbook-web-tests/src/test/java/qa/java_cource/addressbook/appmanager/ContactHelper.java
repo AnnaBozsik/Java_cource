@@ -68,6 +68,10 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("(//input[@name='update'])[2]"));
   }
 
+  public void addToGroup () {
+    wd.findElement(By.name("add")).click();
+  }
+
   public void create(ContactData contact) {
     gotoEditPage();
     fillContactForm(contact);
