@@ -1,0 +1,9 @@
+apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = 'ga.java_cource.sandbox.MyFirstProgram'
+repositories {
+    mavenCentral{}
+}
+dependencies {
+    implementation 'org.testng:testng:7.1.0'
+}
