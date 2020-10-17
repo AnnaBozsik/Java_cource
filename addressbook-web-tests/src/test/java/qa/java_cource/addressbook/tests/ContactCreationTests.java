@@ -56,7 +56,7 @@ public class ContactCreationTests extends TestBase{
     return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
   }
 
-  @Test(dataProvider = "validContactsFromJson", enabled = false)
+  @Test(dataProvider = "validContactsFromJson")
   public void testNewContactCreation(ContactData contact) throws Exception {
     Contacts before = app.db().contacts();
     app.contact().create(contact);
@@ -67,7 +67,7 @@ public class ContactCreationTests extends TestBase{
             before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
   }
 
-  @Test
+  @Test(enabled = false)
   public void testNewContactCreationWithPhoto() throws Exception {
     Contacts before = app.db().contacts();
     Groups groups = app.db().groups();
