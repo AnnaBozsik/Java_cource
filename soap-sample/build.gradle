@@ -26,4 +26,6 @@ wsdl2java {
     wsdlsToGenerate = [   //  2d-array of wsdls and cxf-parameters
                           ['src/main/resources/geoipservice.wsdl']
     ]
+    //cxfVersion = "2.5.1"
+    //cxfPluginVersion = "2.4.0"
 }
