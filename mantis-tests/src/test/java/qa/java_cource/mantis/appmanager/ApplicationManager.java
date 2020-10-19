@@ -20,7 +20,7 @@ public class ApplicationManager {
   private String browser;
   private RegistrationHelper registrationHelper;
   private FtpHelper ftp;
-  private Object mailHelper;
+  private MailHelper mailHelper;
 
   public ApplicationManager(String browser) throws IOException {
     this.browser = browser;
