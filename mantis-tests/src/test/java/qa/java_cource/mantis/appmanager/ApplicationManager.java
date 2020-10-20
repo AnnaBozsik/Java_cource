@@ -21,6 +21,7 @@ public class ApplicationManager {
   private RegistrationHelper registrationHelper;
   private FtpHelper ftp;
   private MailHelper mailHelper;
+  private UserHelper userHelper;
 
   public ApplicationManager(String browser) throws IOException {
     this.browser = browser;
@@ -80,6 +81,10 @@ public class ApplicationManager {
       mailHelper = new MailHelper(this);
     }
     return mailHelper;
+  }
+
+  public UserHelper user() {
+    return userHelper;
   }
 }
 
