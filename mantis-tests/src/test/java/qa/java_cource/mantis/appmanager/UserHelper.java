@@ -9,11 +9,11 @@ public class UserHelper extends HelperBase {
   }
 
   public void initiatePasswordReset() {
-    click(By.xpath("//input[@value='Reset Password']");
+    click(By.xpath("//input[@value='Reset Password']"));
   }
 
   public void chooseUser() {
-    click(By.linkText("AnnaB");
+    click(By.linkText("AnnaB"));
   }
 
   public void gotoManageUsersPage() {

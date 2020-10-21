@@ -13,14 +13,14 @@ public class PasswordChangeTests extends TestBase {
   }
 
   private void initiatePasswordReset() {
-    app.findElement(By.xpath("//input[@value='Reset Password']")).click();
+    //app.findElement(By.xpath("//input[@value='Reset Password']")).click();
   }
 
   private void chooseUser() {
-    app.findElement(By.linkText("AnnaB")).click();
+    //app.findElement(By.linkText("AnnaB")).click();
   }
 
   private void gotoManageUsersPage() {
-    app.get("http://localhost/mantis/manage_user_page.php");
+    //app.get("http://localhost/mantis/manage_user_page.php");
   }
 }
