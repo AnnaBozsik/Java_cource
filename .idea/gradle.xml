@@ -16,6 +16,26 @@
         </option>
       </GradleProjectSettings>
       <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/github-sample" />
+        <option name="gradleHome" value="/usr/local/Cellar/gradle/6.6/libexec" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/github-sample" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/github_sample" />
+        <option name="gradleHome" value="/usr/local/Cellar/gradle/6.6/libexec" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/github_sample" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
         <option name="delegatedBuild" value="false" />
         <option name="testRunner" value="PLATFORM" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
