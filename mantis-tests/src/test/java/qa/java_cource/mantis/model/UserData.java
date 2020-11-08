@@ -1,20 +1,29 @@
 package qa.java_cource.mantis.model;
 
-import java.util.HashSet;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
-import java.util.Set;
 
+
+@Entity
+@Table(name = "mantis_user_table")
   public class UserData {
+
+    @Id
+    @Column(name = "id")
     private int id = Integer.MAX_VALUE;
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
     private String password;
 
-    private Set<UserData> users = new HashSet<UserData>();
-
-    public Users getUsers() {
-      return new Users(users);
-    }
 
     public int getId() {
       return id;
@@ -61,20 +70,19 @@ import java.util.Set;
               '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-      if (this == o) return true;
-      if (o == null || getClass() != o.getClass()) return false;
-      UserData userData = (UserData) o;
-      return id == userData.id &&
-              Objects.equals(username, userData.username) &&
-              Objects.equals(email, userData.email) &&
-              Objects.equals(password, userData.password) &&
-              Objects.equals(users, userData.users);
-    }
-
-    @Override
-    public int hashCode() {
-      return Objects.hash(id, username, email, password, users);
-    }
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    UserData userData = (UserData) o;
+    return id == userData.id &&
+            Objects.equals(username, userData.username) &&
+            Objects.equals(email, userData.email) &&
+            Objects.equals(password, userData.password);
   }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, username, email, password);
+  }
+}

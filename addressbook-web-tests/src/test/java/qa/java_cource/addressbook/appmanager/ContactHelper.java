@@ -3,8 +3,6 @@ package qa.java_cource.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import qa.java_cource.addressbook.model.ContactData;
 import qa.java_cource.addressbook.model.Contacts;
 

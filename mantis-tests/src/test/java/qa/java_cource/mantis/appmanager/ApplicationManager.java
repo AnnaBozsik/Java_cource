@@ -23,6 +23,7 @@ public class ApplicationManager {
   private MailHelper mailHelper;
   private UserHelper userHelper;
   private SoapHelper soapHelper;
+  private DbHelper dbHelper;
 
   public ApplicationManager(String browser) throws IOException {
     this.browser = browser;
@@ -48,19 +49,6 @@ public class ApplicationManager {
     return properties.getProperty(key);
   }
 
-  public RegistrationHelper registration() {
-    if (registrationHelper == null) {
-      registrationHelper = new RegistrationHelper(this);
-    }
-    return registrationHelper;
-  }
-
-  public FtpHelper ftp() {
-    if (ftp == null) {
-      ftp = new FtpHelper(this);
-    }
-    return ftp;
-  }
 
   public WebDriver getDriver() {
     if (wd == null) {
@@ -96,6 +84,27 @@ public class ApplicationManager {
       soapHelper = new SoapHelper(this);
     }
     return soapHelper;
+  }
+
+  public DbHelper db() {
+    if (dbHelper == null) {
+      dbHelper = new DbHelper(this);
+    }
+    return dbHelper;
+  }
+
+  public RegistrationHelper registration() {
+    if (registrationHelper == null) {
+      registrationHelper = new RegistrationHelper(this);
+    }
+    return registrationHelper;
+  }
+
+  public FtpHelper ftp() {
+    if (ftp == null) {
+      ftp = new FtpHelper(this);
+    }
+    return ftp;
   }
 }
 

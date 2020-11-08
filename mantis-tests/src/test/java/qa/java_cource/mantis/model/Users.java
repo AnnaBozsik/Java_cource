@@ -27,16 +27,4 @@ public class Users extends ForwardingSet<UserData> {
   protected Set<UserData> delegate() {
     return delegate;
   }
-
-  public Users withAdded(UserData user) {
-    Users users = new Users(this);
-    users.add(user);
-    return users;
-  }
-
-  public Users without(UserData user) {
-    Users users = new Users(this);
-    users.remove(user);
-    return users;
-  }
 }

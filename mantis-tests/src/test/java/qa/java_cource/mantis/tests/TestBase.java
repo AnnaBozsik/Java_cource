@@ -15,7 +15,7 @@ public class TestBase {
   public void setUp() throws Exception {
     app = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
     app.init();
-    app.ftp().upload(new File("src/test/resources/config_inc.php"), "config_inc.php", "config_inc.php.bak");
+    //app.ftp().upload(new File("src/test/resources/config_inc.php"), "config_inc.php", "config_inc.php.bak");
   }
 
   @AfterSuite (alwaysRun = true)
