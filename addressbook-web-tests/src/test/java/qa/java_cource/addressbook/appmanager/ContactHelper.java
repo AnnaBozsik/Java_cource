@@ -68,8 +68,12 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("(//input[@name='update'])[2]"));
   }
 
-  public void addToGroup () {
+  public void addToGroup() {
     wd.findElement(By.name("add")).click();
+  }
+
+  public void selectGroupFromDropDown() {
+    wd.findElement(By.name("to_group"));
   }
 
   public void create(ContactData contact) {
@@ -142,4 +146,3 @@ public class ContactHelper extends HelperBase {
     return new Contacts(contactCache);
   }
 }
-

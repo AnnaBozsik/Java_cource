@@ -222,6 +222,7 @@ public class ContactData {
             "id=" + id +
             ", firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
+            ", groups=" + groups +
             '}';
   }
 
