@@ -14,7 +14,7 @@ public class DbHelper {
 
     private final SessionFactory sessionFactory;
 
-    public DbHelper(ApplicationManager applicationManager) {
+    public DbHelper() {
 
       // A SessionFactory is set up once for an application!
       final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()

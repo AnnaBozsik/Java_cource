@@ -1,15 +1,14 @@
 package qa.java_cource.mantis.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.subethamail.wiser.Wiser;
 
 
 public class UserHelper extends HelperBase {
 
-  private ApplicationManager app;
-
-  public UserHelper(ApplicationManager app) {
-    super(app);
+  public UserHelper (WebDriver wd) {
+    super(wd);
   }
 
   public void gotoManageUsersPage() {
@@ -19,10 +18,10 @@ public class UserHelper extends HelperBase {
   public void chooseUser() {
     wd.findElement(By.linkText("AnnaB")).click();
   }
+
   public void initiatePasswordReset() {
     wd.findElement(By.xpath("//input[@value='Reset Password']")).click();
   }
-
 }
 
 

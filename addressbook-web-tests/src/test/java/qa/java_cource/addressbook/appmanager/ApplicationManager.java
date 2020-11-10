@@ -62,7 +62,8 @@ public class ApplicationManager {
     sessionHelper.login(properties.getProperty("web.admin.Login"), properties.getProperty("web.admin.Password"));
   }
 
-  public void stop() { wd.quit(); }
+  public void stop() {
+    wd.quit(); }
 
   public GroupHelper group() {
     return groupHelper;

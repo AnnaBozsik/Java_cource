@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
 
   private final Properties properties;
-  private WebDriver wd;
+  WebDriver wd;
 
   private String browser;
   private RegistrationHelper registrationHelper;
@@ -24,6 +24,7 @@ public class ApplicationManager {
   private UserHelper userHelper;
   private SoapHelper soapHelper;
   private DbHelper dbHelper;
+  private SessionHelper sessionHelper;
 
   public ApplicationManager(String browser) throws IOException {
     this.browser = browser;
@@ -33,24 +34,9 @@ public class ApplicationManager {
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-  }
 
-  public void stop() {
-    if (wd != null) {
-      wd.quit();
-    }
-  }
+    dbHelper = new DbHelper();
 
-  public HttpSession newSession() {
-    return new HttpSession(this);
-  }
-
-  public String getProperty(String key) {
-    return properties.getProperty(key);
-  }
-
-
-  public WebDriver getDriver() {
     if (wd == null) {
       if (browser.equals(BrowserType.FIREFOX)) {
         wd = new FirefoxDriver();
@@ -61,50 +47,61 @@ public class ApplicationManager {
       }
       wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
       wd.get(properties.getProperty("web.baseUrl"));
+      sessionHelper = new SessionHelper(wd);
+      userHelper = new UserHelper(wd);
+      sessionHelper.login(properties.getProperty("web.admin.Login"), properties.getProperty("web.admin.Password"));
     }
-    return wd;
   }
 
-  public MailHelper mail() {
-    if (mailHelper == null) {
-      mailHelper = new MailHelper(this);
+    public void stop() {
+      wd.quit();
     }
-    return mailHelper;
-  }
 
-  public UserHelper user() {
-    if (userHelper == null) {
-      userHelper = new UserHelper(this);
+    public HttpSession newSession() {
+      return new HttpSession(this);
     }
-    return userHelper;
-  }
 
-  public SoapHelper soap() {
-    if (soapHelper == null) {
-      soapHelper = new SoapHelper(this);
+    public MailHelper mail () {
+      if (mailHelper == null) {
+        mailHelper = new MailHelper(this);
+      }
+      return mailHelper;
     }
-    return soapHelper;
-  }
 
-  public DbHelper db() {
+    public UserHelper user () {
+      return userHelper;
+    }
+
+    public SoapHelper soap () {
+      if (soapHelper == null) {
+        soapHelper = new SoapHelper(this);
+      }
+      return soapHelper;
+    }
+
+    public DbHelper db() {
     if (dbHelper == null) {
-      dbHelper = new DbHelper(this);
+      dbHelper = new DbHelper();
     }
-    return dbHelper;
-  }
+      return dbHelper;
+    }
 
-  public RegistrationHelper registration() {
-    if (registrationHelper == null) {
-      registrationHelper = new RegistrationHelper(this);
+    public RegistrationHelper registration () {
+      if (registrationHelper == null) {
+        registrationHelper = new RegistrationHelper(this);
+      }
+      return registrationHelper;
     }
-    return registrationHelper;
-  }
 
-  public FtpHelper ftp() {
-    if (ftp == null) {
-      ftp = new FtpHelper(this);
+    public FtpHelper ftp () {
+      if (ftp == null) {
+        ftp = new FtpHelper(this);
+      }
+      return ftp;
     }
-    return ftp;
+
+  public String getProperty(String key) {
+    return properties.getProperty(key);
   }
 }
 
