@@ -87,9 +87,6 @@ public class ApplicationManager {
     }
 
     public RegistrationHelper registration () {
-      if (registrationHelper == null) {
-        registrationHelper = new RegistrationHelper(this);
-      }
       return registrationHelper;
     }
 

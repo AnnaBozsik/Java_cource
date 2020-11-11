@@ -9,6 +9,10 @@ import qa.java_cource.addressbook.model.Contacts;
 import qa.java_cource.addressbook.model.GroupData;
 import qa.java_cource.addressbook.model.Groups;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class ContactAddToGroupTests extends TestBase {
 
 
@@ -30,21 +34,17 @@ public class ContactAddToGroupTests extends TestBase {
   public void testContactAddToGroup() {
     Contacts contacts = app.db().contacts();
     Groups groups = app.db().groups();
-    ContactData selectedContact = contacts.iterator().next();
-    ContactData contact = new ContactData()
-            .withId(selectedContact.getId()).withFirstName("Anna").withLastName("Bozsik")
-            .withMobilePhone("222").withEmail("ann.bozsik@gmail.com").inGroup(groups.iterator().next());
+    System.out.println(contacts);
+    System.out.println(groups);
+    List<ContactData> list = new ArrayList<ContactData>();
 
-    app.contact().selectContactById(contact.getId());
-    if (app.db().groups().size() == 1) {
-      app.contact().addToGroup();
-    } else {
-      Select selectGroup = new Select(app.contact().selectGroupFromDropDown());
-      selectGroup.selectByVisibleText(app.db().groups().iterator().next().getName());
-      app.contact().addToGroup();
+
+
+
+
     }
 
 
+
   }
-}
     
