@@ -36,15 +36,6 @@ public class ContactAddToGroupTests extends TestBase {
     Groups groups = app.db().groups();
     System.out.println(contacts);
     System.out.println(groups);
-    List<ContactData> list = new ArrayList<ContactData>();
-
-
-
-
-
-    }
-
-
-
   }
+}
     

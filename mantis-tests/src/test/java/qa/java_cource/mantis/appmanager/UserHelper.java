@@ -22,6 +22,13 @@ public class UserHelper extends HelperBase {
   public void initiatePasswordReset() {
     wd.findElement(By.xpath("//input[@value='Reset Password']")).click();
   }
+
+  public void changePassword(String confirmationLink, String password) {
+    wd.get(confirmationLink);
+    type(By.name("password"), password);
+    type(By.name("password_confirm"), password);
+    click((By.cssSelector("input[value='Update User']")));
+  }
 }
 
 
