@@ -27,12 +27,11 @@ public class PasswordChangeTests extends TestBase {
     Users before = app.db().users();
     for (UserData currentUser : before) {
       System.out.println(currentUser);
-      UserData userToChangePassword = before.iterator().next();
       UserData user = new UserData()
-              .withId(userToChangePassword.getId()).withUserName(userToChangePassword.getUsername())
-              .withEmail(userToChangePassword.getEmail()).withPassword(userToChangePassword.getPassword());
+              .withId(currentUser.getId()).withUserName(currentUser.getUsername())
+              .withEmail(currentUser.getEmail()).withPassword(currentUser.getPassword());
       System.out.println(user.getUsername());
-      if (user.getUsername() == "administrator") {
+      if (user.getUsername().equals("administrator")) {
         System.out.println("Not allowed");
       } else {
         app.user().gotoManageUsersPage();
