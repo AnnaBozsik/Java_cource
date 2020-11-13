@@ -1,6 +1,7 @@
 package qa.java_cource.mantis.tests;
 
 import org.openqa.selenium.remote.BrowserType;
+import org.testng.SkipException;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import qa.java_cource.mantis.appmanager.ApplicationManager;

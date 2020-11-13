@@ -22,25 +22,34 @@ public class PasswordChangeTests extends TestBase {
 
   @Test
   public void testChangePassword() throws Exception {
-    Users before = app.db().users();
     long now = System.currentTimeMillis();
     String password = String.format("password", now);
-    String user = "AnnaB";
-    String email = "ab@gmail.com";
-    app.user().gotoManageUsersPage();
-    app.user().chooseUser();
-    app.user().initiatePasswordReset();
-    List<MailMessage> mailMessages = app.mail().waitForMail(1, 100000);
-    String confirmationLink = findConfirmationLink(mailMessages, email);
-    app.user().changePassword(confirmationLink, password);
-    Users after = app.db().users();
-    assertNotEquals(after, (before.stream()
-            .map((u) -> new UserData().withId(u.getId()).withUserName(u.getUsername())
-                    .withEmail(u.getEmail()).withPassword(u.getPassword()))
-                    .collect(Collectors.toSet())));
-    HttpSession session = app.newSession();
-    assertTrue(app.newSession().login(user, password));
-    assertTrue(session.isLoggedInAs("AnnaB"));
+    Users before = app.db().users();
+    for (UserData currentUser : before) {
+      System.out.println(currentUser);
+      UserData userToChangePassword = before.iterator().next();
+      UserData user = new UserData()
+              .withId(userToChangePassword.getId()).withUserName(userToChangePassword.getUsername())
+              .withEmail(userToChangePassword.getEmail()).withPassword(userToChangePassword.getPassword());
+      System.out.println(user.getUsername());
+      if (user.getUsername() == "administrator") {
+        System.out.println("Not allowed");
+      } else {
+        app.user().gotoManageUsersPage();
+        app.user().initiatePasswordChange(user);
+        List<MailMessage> mailMessages = app.mail().waitForMail(1, 100000);
+        String confirmationLink = findConfirmationLink(mailMessages, user.getEmail());
+        app.user().changePasswordFromEmail(confirmationLink, password);
+        Users after = app.db().users();
+        assertNotEquals(after, (before.stream()
+                .map((u) -> new UserData().withId(u.getId()).withUserName(u.getUsername())
+                        .withEmail(u.getEmail()).withPassword(u.getPassword()))
+                .collect(Collectors.toSet())));
+        HttpSession session = app.newSession();
+        assertTrue(app.newSession().login(user.getUsername(), password));
+        assertTrue(session.isLoggedInAs(user.getUsername()));
+      }
+    }
   }
 
   private String findConfirmationLink(List<MailMessage> mailMessages, String email) {

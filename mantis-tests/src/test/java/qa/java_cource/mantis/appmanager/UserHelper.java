@@ -3,6 +3,7 @@ package qa.java_cource.mantis.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.subethamail.wiser.Wiser;
+import qa.java_cource.mantis.model.UserData;
 
 
 public class UserHelper extends HelperBase {
@@ -15,15 +16,20 @@ public class UserHelper extends HelperBase {
     wd.get("http://localhost/mantis/manage_user_page.php");
   }
 
-  public void chooseUser() {
-    wd.findElement(By.linkText("AnnaB")).click();
+  public void selectUserById(int id) {
+    wd.findElement(By.xpath("//a[contains(@href,'manage_user_edit_page.php?user_id=" + id + "')]")).click();
   }
 
   public void initiatePasswordReset() {
     wd.findElement(By.xpath("//input[@value='Reset Password']")).click();
   }
 
-  public void changePassword(String confirmationLink, String password) {
+  public void initiatePasswordChange(UserData user) {
+    selectUserById(user.getId());
+    initiatePasswordReset();
+  }
+
+  public void changePasswordFromEmail(String confirmationLink, String password) {
     wd.get(confirmationLink);
     type(By.name("password"), password);
     type(By.name("password_confirm"), password);
