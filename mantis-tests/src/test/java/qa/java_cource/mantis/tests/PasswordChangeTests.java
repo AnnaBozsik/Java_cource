@@ -47,6 +47,7 @@ public class PasswordChangeTests extends TestBase {
         HttpSession session = app.newSession();
         assertTrue(app.newSession().login(user.getUsername(), password));
         assertTrue(session.isLoggedInAs(user.getUsername()));
+        break;
       }
     }
   }
