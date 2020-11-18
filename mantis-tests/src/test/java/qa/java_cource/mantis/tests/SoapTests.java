@@ -1,5 +1,6 @@
 package qa.java_cource.mantis.tests;
 
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import qa.java_cource.mantis.model.Issue;
 import qa.java_cource.mantis.model.Project;

@@ -7,6 +7,7 @@ import qa.java_cource.mantis.model.MailMessage;
 import ru.lanwen.verbalregex.VerbalExpression;
 
 import javax.mail.MessagingException;
+import javax.xml.rpc.ServiceException;
 import java.io.IOException;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class RegistrationTests extends TestBase {
   }
 
   @Test
-  public  void testRegistration() throws IOException, MessagingException {
+  public  void testRegistration() throws IOException {
     long now = System.currentTimeMillis();
     String user = String.format("user%s", now);
     String password = "password";
