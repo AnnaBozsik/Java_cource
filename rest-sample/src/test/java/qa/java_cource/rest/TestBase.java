@@ -16,15 +16,17 @@ public class TestBase {
   }
 
   public boolean isIssueOpen(int issueId) throws IOException {
-     String json = getExecutor().execute(Request.Get("https://bugify.stqa.ru/api/issues/" + issueId + ".json"))
+    String json = getExecutor().execute(Request.Get("https://bugify.stqa.ru/api/issues/" + issueId + ".json"))
             .returnContent().asString();
     JsonElement parsed = new JsonParser().parse(json);
     JsonElement issues = parsed.getAsJsonObject().get("issues");
-    JsonObject first = issues.getAsJsonArray().getAsJsonObject(0);
-
-
-    return true;
-    //return (issues.getAs (0).getString("state_name") == "Open");
+    JsonArray arr = issues.getAsJsonArray();
+    String state_name = null;
+    for (int i = 0; i < arr.size(); i++) {
+      state_name = arr.get(i).getAsJsonObject().get("state_name").getAsString();
+      System.out.println(state_name);
+    }
+    return (state_name.equals("Open"));
   }
 
   public void skipIfNotFixed(int issueId) throws IOException {
