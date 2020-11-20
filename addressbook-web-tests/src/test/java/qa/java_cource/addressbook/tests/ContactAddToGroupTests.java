@@ -32,13 +32,18 @@ public class ContactAddToGroupTests extends TestBase {
 
   @Test
   public void testContactAddToGroup() {
-    Contacts contacts = app.db().contacts();
+    Contacts before = app.db().contacts();
     Groups groups = app.db().groups();
-    System.out.println(contacts);
-    System.out.println(groups);
-
-
-
+    for (ContactData contact : before) {
+      System.out.println(contact);
+      if (groups == null) {
+        app.contact().selectContactById(contact.getId());
+        app.contact().addToGroup();
+      }
+    }
+    for (GroupData group : groups) {
+      System.out.println(group);
+    }
   }
 }
     

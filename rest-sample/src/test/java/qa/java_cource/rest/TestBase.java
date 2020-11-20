@@ -1,12 +1,10 @@
 package qa.java_cource.rest;
 import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
 import org.apache.http.client.fluent.Executor;
 import org.apache.http.client.fluent.Request;
 import org.testng.SkipException;
 
 import java.io.IOException;
-import java.util.Set;
 
 
 public class TestBase {
