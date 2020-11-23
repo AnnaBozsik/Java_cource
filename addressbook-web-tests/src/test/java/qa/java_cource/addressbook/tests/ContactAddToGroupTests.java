@@ -1,18 +1,11 @@
 package qa.java_cource.addressbook.tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import qa.java_cource.addressbook.model.ContactData;
 import qa.java_cource.addressbook.model.Contacts;
 import qa.java_cource.addressbook.model.GroupData;
 import qa.java_cource.addressbook.model.Groups;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class ContactAddToGroupTests extends TestBase {
 
 
@@ -32,17 +25,24 @@ public class ContactAddToGroupTests extends TestBase {
 
   @Test
   public void testContactAddToGroup() {
-    Contacts before = app.db().contacts();
-    Groups groups = app.db().groups();
-    for (ContactData contact : before) {
+    Contacts contactsBefore = app.db().contacts();
+    Groups groupsBefore = app.db().groups();
+    for (ContactData contact : contactsBefore) {
       System.out.println(contact);
-      if (groups == null) {
+      System.out.println(contact.getGroups().size());
+      if (groupsBefore.size() > contact.getGroups().size()) {
+        app.contact().selectContactById(contact.getId());
+        app.contact().addToGroup();
+        //Contacts after = app.db().contacts();
+        //System.out.println(after);
+
+      } else {
+        app.contact().create(new ContactData().withFirstName("Anna").withLastName("Bozsik")
+                .withMobilePhone("222").withEmail("ab@gmail.com"));
+        app.goTo().gotoHome();
         app.contact().selectContactById(contact.getId());
         app.contact().addToGroup();
       }
-    }
-    for (GroupData group : groups) {
-      System.out.println(group);
     }
   }
 }
