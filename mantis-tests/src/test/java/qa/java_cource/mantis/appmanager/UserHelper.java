@@ -1,5 +1,6 @@
 package qa.java_cource.mantis.appmanager;
 
+import org.apache.http.client.methods.HttpPost;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.subethamail.wiser.Wiser;
@@ -13,7 +14,7 @@ public class UserHelper extends HelperBase {
   }
 
   public void gotoManageUsersPage() {
-    wd.get("http://localhost/mantis/manage_user_page.php");
+    wd.get(app.getProperty("web.baseUrl") + "/manage_user_page.php");
   }
 
   public void selectUserById(int id) {

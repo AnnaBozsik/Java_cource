@@ -51,7 +51,7 @@ public class ContactAddToGroupTests extends TestBase {
     app.goTo().gotoHome();
     app.contact().selectContactById(newAddedContact.getId());
     app.contact().addToGroup();
-    
+
   }
 }
     
