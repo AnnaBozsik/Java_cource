@@ -6,6 +6,11 @@ import qa.java_cource.addressbook.model.ContactData;
 import qa.java_cource.addressbook.model.Contacts;
 import qa.java_cource.addressbook.model.GroupData;
 import qa.java_cource.addressbook.model.Groups;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+
 public class ContactAddToGroupTests extends TestBase {
 
 
@@ -27,23 +32,26 @@ public class ContactAddToGroupTests extends TestBase {
   public void testContactAddToGroup() {
     Contacts contactsBefore = app.db().contacts();
     Groups groupsBefore = app.db().groups();
-    for (ContactData contact : contactsBefore) {
-      System.out.println(contact);
-      System.out.println(contact.getGroups().size());
-      if (groupsBefore.size() > contact.getGroups().size()) {
-        app.contact().selectContactById(contact.getId());
+    for (ContactData eachContact : contactsBefore) {
+      System.out.println("Each line contact is " + eachContact);
+      int contactInGroupsBefore = eachContact.getGroups().size();
+      System.out.println(contactInGroupsBefore);
+      if (groupsBefore.size() > contactInGroupsBefore) {
+        app.contact().selectContactById(eachContact.getId());
         app.contact().addToGroup();
-        //Contacts after = app.db().contacts();
-        //System.out.println(after);
-
-      } else {
-        app.contact().create(new ContactData().withFirstName("Anna").withLastName("Bozsik")
-                .withMobilePhone("222").withEmail("ab@gmail.com"));
-        app.goTo().gotoHome();
-        app.contact().selectContactById(contact.getId());
-        app.contact().addToGroup();
+        int contactInGroupsAfter = (contactInGroupsBefore + 1);
+        assertThat(contactInGroupsBefore, equalTo(contactInGroupsAfter));
+        break;
       }
     }
+    ContactData newAddedContact = new ContactData().withFirstName("Anna_new").withLastName("Bozsik")
+            .withMobilePhone("222").withEmail("ab@gmail.com");
+    System.out.println("New created contact " + newAddedContact);
+    app.contact().create(newAddedContact);
+    app.goTo().gotoHome();
+    app.contact().selectContactById(newAddedContact.getId());
+    app.contact().addToGroup();
+    
   }
 }
     
