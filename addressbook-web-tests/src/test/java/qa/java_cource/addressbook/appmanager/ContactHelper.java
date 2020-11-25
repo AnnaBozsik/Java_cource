@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import qa.java_cource.addressbook.model.ContactData;
 import qa.java_cource.addressbook.model.Contacts;
+import qa.java_cource.addressbook.model.GroupData;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
@@ -64,10 +66,6 @@ public class ContactHelper extends HelperBase {
 
   public void initContactUpdate() {
     click(By.xpath("(//input[@name='update'])[2]"));
-  }
-
-  public void addToGroup() {
-    wd.findElement(By.name("add")).click();
   }
 
   public void selectGroupFromDropDown() {
@@ -142,5 +140,21 @@ public class ContactHelper extends HelperBase {
               .withAllAddresses(allAddresses).withAllPhones(allPhones).withAllEmails(allEmails));
     }
     return new Contacts(contactCache);
+  }
+
+  public void removeFromGroup(ContactData contact, GroupData group) {
+    selectGroupFromList(group);
+    selectContactById(contact.getId());
+    click(By.xpath("(//input[@name='remove'])"));
+  }
+
+  private void selectGroupFromList(GroupData group) {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(group.getName());
+  }
+
+  public void addToGroup(ContactData contact, GroupData group) {
+    selectContactById(contact.getId());
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
+    click(By.xpath("(//input[@value='Add to'])"));
   }
 }

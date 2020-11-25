@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
+import qa.java_cource.addressbook.appmanager.ApplicationManager;
 
 import javax.persistence.*;
 import java.io.File;
